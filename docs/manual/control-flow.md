@@ -2,18 +2,22 @@
 
 Julia provides a variety of control flow constructs:
 
-  * [Compound Expressions](@ref man-compound-expressions): `begin` and `;`.
-  * [Conditional Evaluation](@ref man-conditional-evaluation): `if`-`elseif`-`else` and `?:` (ternary operator).
-  * Short-Circuit Evaluation: logical operators `&&` (“and”) and `||` (“or”), and also chained comparisons.
-  * [Repeated Evaluation: Loops](@ref man-loops): `while` and `for`.
-  * Exception Handling: `try`-`catch`, `error` and `throw`.
-  * Tasks (aka Coroutines)](@ref man-tasks): [`yieldto`.
+  * [عبارات مرکب]: `begin` و `;`.
+  * [ارزیابی شرطی]: `if`-`elseif`-`else` و `?:` (عملگر سه تایی).
+  * ارزیابی اتصال کوتاه: عملگر های منطقی `&&` (“and”) و `||` (“or”) و همچنین مقایسه های زنجیری.
+  * [ارزیابی تکراری : حلقه ها]: `while` و `for`.
+  * مدیریت استثنا ها: `try`-`catch`، `error` و `throw`.
+  * کار ها : `yieldto`.
+
+پنج تای اول از مکانیزم های کنترل جریان که گفته شد در زمره استاندارد های زبان های سطح بالا قرار دارند. اما برای مورد آخر اینگونه نیست:این مورد یک کنترل جریان غیر محلی فراهم می کند به طوری که تغییر وضعیت بین محاسبات به طور موقت معلق را امکان پذیر می کند. این یک ساختار قدرتمند است: به طوری که مدیریت استثنا ها و cooperative multitasking توسط آن پیاده سازی شده اند. در برنامه نویسی روزمره نیازی به استفاده مستقیم از tasks نیست اما بعضی مسيله ها را می توان با استفاده از tasks بسیار راحت تر حل کرد. 
 
 The first five control flow mechanisms are standard to high-level programming languages. `Task`s
 are not so standard: they provide non-local control flow, making it possible to switch between
 temporarily-suspended computations. This is a powerful construct: both exception handling and
 cooperative multitasking are implemented in Julia using tasks. Everyday programming requires no
 direct usage of tasks, but certain problems can be solved much more easily by using tasks.
+
+
 
 ## Compound Expressions
 
