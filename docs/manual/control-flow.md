@@ -2,25 +2,18 @@
 
 Julia provides a variety of control flow constructs:
 
-  * [Compound Expressions](@ref man-compound-expressions): `begin` and `;`.
-  * [Conditional Evaluation](@ref man-conditional-evaluation): `if`-`elseif`-`else` and `?:` (ternary operator).
-  * Short-Circuit Evaluation: logical operators `&&` (“and”) and `||` (“or”), and also chained comparisons.
-  * [Repeated Evaluation: Loops](@ref man-loops): `while` and `for`.
-  * Exception Handling: `try`-`catch`, `error` and `throw`.
-  * Tasks (aka Coroutines)](@ref man-tasks): [`yieldto`.
+  * [عبارات مرکب]: `begin` و `;`.
+  * [ارزیابی شرطی]: `if`-`elseif`-`else` و `?:` (عملگر سه تایی).
+  * ارزیابی اتصال کوتاه: عملگر های منطقی `&&` (“and”) و `||` (“or”) و همچنین مقایسه های زنجیری.
+  * [ارزیابی تکراری : حلقه ها]: `while` و `for`.
+  * مدیریت استثنا ها: `try`-`catch`، `error` و `throw`.
+  * کار ها : `yieldto`.
 
-The first five control flow mechanisms are standard to high-level programming languages. `Task`s
-are not so standard: they provide non-local control flow, making it possible to switch between
-temporarily-suspended computations. This is a powerful construct: both exception handling and
-cooperative multitasking are implemented in Julia using tasks. Everyday programming requires no
-direct usage of tasks, but certain problems can be solved much more easily by using tasks.
+پنج تای اول از مکانیزم های کنترل جریان که گفته شد در زمره استاندارد های زبان های سطح بالا قرار دارند. اما برای مورد آخر اینگونه نیست:این مورد یک کنترل جریان غیر محلی فراهم می کند به طوری که تغییر وضعیت بین محاسبات به طور موقت معلق را امکان پذیر می کند. این یک ساختار قدرتمند است: به طوری که مدیریت استثنا ها و cooperative multitasking توسط آن پیاده سازی شده اند. در برنامه نویسی روزمره نیازی به استفاده مستقیم از tasks نیست اما بعضی مسيله ها را می توان با استفاده از tasks بسیار راحت تر حل کرد. 
 
-## Compound Expressions
+## عبارت های مرکب
 
-Sometimes it is convenient to have a single expression which evaluates several subexpressions
-in order, returning the value of the last subexpression as its value. There are two Julia constructs
-that accomplish this: `begin` blocks and `;` chains. The value of both compound expression constructs
-is that of the last subexpression. Here's an example of a `begin` block:
+بعضی اوقات مناسب است که یک عبارت واحد داشته باشید که چندین زیر عبارت را به ترتیب ارزیابی کند و مقدار آخرین زیر عبارت را به عنوان مقدار خود برگرداند. دو ساختار در جولیا وجود دارند که این را انجام می دهند: قطعه های 'begin' و زنجیر های ';'. مقدار هر دو ساختار برابر است با مقدار آخرین زیر عبارت. اینجا یک مثال از قطعه 'begin' می بینیم:
 
 ```julia
 julia> z = begin
@@ -30,18 +23,13 @@ julia> z = begin
        end
 3
 ```
-
-Since these are fairly small, simple expressions, they could easily be placed onto a single line,
-which is where the `;` chain syntax comes in handy:
+همین طور چون این عبارت ها کوتاه و ساده هستند می توان آن ها را در یک خط نوشت.این جاست که ساختار زنجیری ';' استفاده می شود:
 
 ```julia
 julia> z = (x = 1; y = 2; x + y)
 3
 ```
-
-This syntax is particularly useful with the terse single-line function definition form introduced
-in [Functions](@ref man-functions). Although it is typical, there is no requirement that `begin` blocks be multiline
-or that `;` chains be single-line:
+به ویژه این سینتکس مفید است زمانی که با فرم تعریف تابع در یک خط استفاده شود که در قسمت های قبل معرفی شد. اگر چه که این مرسوم است ولی نیازی نیست حتما قطعه های 'begin' چند خطه باشند و یا زنجیر های ';' یک خط باشد:
 
 ```julia
 julia> begin x = 1; y = 2; x + y end
@@ -53,10 +41,9 @@ julia> (x = 1;
 3
 ```
 
-## Conditional Evaluation
+## ارزیابی شرطی
 
-Conditional evaluation allows portions of code to be evaluated or not evaluated depending on the
-value of a boolean expression. Here is the anatomy of the `if`-`elseif`-`else` conditional syntax:
+ارزیابی شرطی با توجه به مقدار بولی عبارت اجازه می دهد که یک قسمت از کد ارزیابی بشود یا نشود. اینجا مثالی از ساختار بدنه `if`-`elseif`-`else` است:  
 
 ```julia
 if x < y
@@ -68,9 +55,7 @@ else
 end
 ```
 
-If the condition expression `x < y` is `true`, then the corresponding block is evaluated; otherwise
-the condition expression `x > y` is evaluated, and if it is `true`, the corresponding block is
-evaluated; if neither expression is true, the `else` block is evaluated. Here it is in action:
+  اگر عبارت شرطی`x < y`  صحیح باشد، بلوک وابسته به آن ارزیابی می شود در غیر این صورت عبارت `x > y`ارزیابی می شود اگر صحیح باشد بلوک وابسته به آن ارزیابی می شود و در غیر این صورت عبارت  بلوک `else` ارزیابی می شود.  در عمل به صورت زیر است:
 
 ```julia
 julia> function test(x, y)
