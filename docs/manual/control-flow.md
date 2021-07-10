@@ -2,25 +2,18 @@
 
 Julia provides a variety of control flow constructs:
 
-  * [Compound Expressions](@ref man-compound-expressions): `begin` and `;`.
-  * [Conditional Evaluation](@ref man-conditional-evaluation): `if`-`elseif`-`else` and `?:` (ternary operator).
-  * Short-Circuit Evaluation: logical operators `&&` (“and”) and `||` (“or”), and also chained comparisons.
-  * [Repeated Evaluation: Loops](@ref man-loops): `while` and `for`.
-  * Exception Handling: `try`-`catch`, `error` and `throw`.
-  * Tasks (aka Coroutines)](@ref man-tasks): [`yieldto`.
+  * [عبارات مرکب]: `begin` و `;`.
+  * [ارزیابی شرطی]: `if`-`elseif`-`else` و `?:` (عملگر سه تایی).
+  * ارزیابی اتصال کوتاه: عملگر های منطقی `&&` (“and”) و `||` (“or”) و همچنین مقایسه های زنجیری.
+  * [ارزیابی تکراری : حلقه ها]: `while` و `for`.
+  * مدیریت استثنا ها: `try`-`catch`، `error` و `throw`.
+  * کار ها : `yieldto`.
 
-The first five control flow mechanisms are standard to high-level programming languages. `Task`s
-are not so standard: they provide non-local control flow, making it possible to switch between
-temporarily-suspended computations. This is a powerful construct: both exception handling and
-cooperative multitasking are implemented in Julia using tasks. Everyday programming requires no
-direct usage of tasks, but certain problems can be solved much more easily by using tasks.
+پنج تای اول از مکانیزم های کنترل جریان که گفته شد در زمره استاندارد های زبان های سطح بالا قرار دارند. اما برای مورد آخر اینگونه نیست:این مورد یک کنترل جریان غیر محلی فراهم می کند به طوری که تغییر وضعیت بین محاسبات به طور موقت معلق را امکان پذیر می کند. این یک ساختار قدرتمند است: به طوری که مدیریت استثنا ها و cooperative multitasking توسط آن پیاده سازی شده اند. در برنامه نویسی روزمره نیازی به استفاده مستقیم از tasks نیست اما بعضی مسيله ها را می توان با استفاده از tasks بسیار راحت تر حل کرد. 
 
-## Compound Expressions
+## عبارت های مرکب
 
-Sometimes it is convenient to have a single expression which evaluates several subexpressions
-in order, returning the value of the last subexpression as its value. There are two Julia constructs
-that accomplish this: `begin` blocks and `;` chains. The value of both compound expression constructs
-is that of the last subexpression. Here's an example of a `begin` block:
+بعضی اوقات مناسب است که یک عبارت واحد داشته باشید که چندین زیر عبارت را به ترتیب ارزیابی کند و مقدار آخرین زیر عبارت را به عنوان مقدار خود برگرداند. دو ساختار در جولیا وجود دارند که این را انجام می دهند: قطعه های 'begin' و زنجیر های ';'. مقدار هر دو ساختار برابر است با مقدار آخرین زیر عبارت. اینجا یک مثال از قطعه 'begin' می بینیم:
 
 ```julia
 julia> z = begin
@@ -30,9 +23,7 @@ julia> z = begin
        end
 3
 ```
-
-Since these are fairly small, simple expressions, they could easily be placed onto a single line,
-which is where the `;` chain syntax comes in handy:
+همین طور چون این عبارت ها کوتاه و ساده هستند می توان آن ها را در یک خط نوشت.این جاست که ساختار زنجیری ';' استفاده می شود:
 
 ```julia
 julia> z = (x = 1; y = 2; x + y)
